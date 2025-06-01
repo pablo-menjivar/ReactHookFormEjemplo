@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import Titulo from "../components/Titulos";
 import useManageImage from "../hooks/useImageChange";
+import InputText from "../components/InputText";
+import SelectInput from "../components/SelectInput";
+import Button from "../components/Button";
 
 const Users = () => {
   const { imagePreviews, handleImageChange, removeImageAtIndex } =
@@ -23,135 +26,51 @@ const Users = () => {
 
         <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           {/* First Name */}
-          <div className="sm:col-span-3 m:col-span-6">
-            <label
-              htmlFor="first-name"
-              className="block text-sm/6 font-medium text-gray-900"
-            >
-              First name
-            </label>
-            <div className="mt-2">
-              <input
-                id="first-name"
-                name="first-name"
-                type="text"
-                autoComplete="given-name"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
-            </div>
-          </div>
+
+          <InputText
+            type="text"
+            name="first-name"
+            label="First Name"
+            placeholder="Enter your first name"
+            autoComplete="given-name"
+            value=""
+            onChange={() => {}}
+          />
 
           {/* Last Name */}
-          <div className="sm:col-span-3 m:col-span-6">
-            <label
-              htmlFor="last-name"
-              className="block text-sm/6 font-medium text-gray-900"
-            >
-              Last name
-            </label>
-            <div className="mt-2">
-              <input
-                id="last-name"
-                name="last-name"
-                type="text"
-                autoComplete="family-name"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
-            </div>
-          </div>
+          <InputText
+            type="text"
+            name="last-name"
+            label="Last Name"
+            placeholder="Enter your last name"
+            autoComplete="given-name"
+            value=""
+            onChange={() => {}}
+          />
 
           {/* Email */}
-          <div className="sm:col-span-3 m:col-span-6">
-            <label
-              htmlFor="email"
-              className="block text-sm/6 font-medium text-gray-900"
-            >
-              Email address
-            </label>
-            <div className="mt-2">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
-            </div>
-          </div>
+          <InputText
+            type="email"
+            name="email"
+            label="Email Adress"
+            placeholder="Enter your email address"
+            value=""
+            onChange={() => {}}
+          />
 
           {/* Country */}
-          <div className="sm:col-span-3 m:col-span-6">
-            <label
-              htmlFor="country"
-              className="block text-sm/6 font-medium text-gray-900"
-            >
-              Country
-            </label>
-            <div className="mt-2 grid grid-cols-1">
-              <select
-                id="country"
-                name="country"
-                autoComplete="country-name"
-                className="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              >
-                <option>United States</option>
-                <option>Canada</option>
-                <option>Mexico</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="col-span-full">
-            <label
-              htmlFor="cover-photo"
-              className="block text-sm font-medium text-gray-900"
-            >
-              User photo
-            </label>
-
-            <div className="mt-2 flex flex-col items-center gap-4 rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
-              {/* Input de archivo */}
-              <label
-                htmlFor="file-upload"
-                className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 hover:text-indigo-500"
-              >
-                <span>Upload a image</span>
-                <input
-                  id="file-upload"
-                  name="file-upload"
-                  type="file"
-                  accept="image/*"
-                  multiple
-                  onChange={handleImageChange}
-                  className="sr-only"
-                />
-              </label>
-              <p className="text-xs text-gray-600">PNG, JPG, GIF up to 10MB</p>
-
-              {/* Previsualizaciones */}
-              {imagePreviews.length > 0 && (
-                <div className="flex gap-4 flex-wrap justify-center mt-4">
-                  {imagePreviews.map((preview, index) => (
-                    <div key={index} className="relative">
-                      <img
-                        src={preview}
-                        alt={`preview-${index}`}
-                        className="w-32 h-32 object-cover rounded-lg shadow"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => removeImageAtIndex(index)}
-                        className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1 text-xs hover:bg-red-600"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
+          <SelectInput
+            label="Country"
+            options={[
+              { value: "us", label: "United States" },
+              { value: "ca", label: "Canada" },
+              { value: "mx", label: "Mexico" },
+            ]}
+            value=""
+            onChange={() => {}}
+          />
         </div>
+        <Button type="submit" text="Save User" onClick={null}/>
       </form>
     </div>
   );
