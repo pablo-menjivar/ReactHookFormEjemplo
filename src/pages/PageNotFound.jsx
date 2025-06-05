@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 const PageNotFound = () => (
   <div className="flex flex-col items-center justify-center min-h-screen text-center">
@@ -10,6 +9,5 @@ const PageNotFound = () => (
       Volver al inicio
     </Link>
   </div>
-);
-
-export default PageNotFound;
+)
+export default PageNotFound
